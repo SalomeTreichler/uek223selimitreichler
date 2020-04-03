@@ -58,9 +58,9 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
+  /*  @Override
     public List<Auction> getAuctionsByUserId(int id) {
         return auctionService.findAllByUserId(id);
-    }
+    }*/
 
 }

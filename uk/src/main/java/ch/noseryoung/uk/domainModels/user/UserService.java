@@ -16,6 +16,6 @@ public interface UserService {
 
     void deleteById(int id);
 
-    List<Auction> getAuctionsByUserId(int id);
 
+    /*List<Auction> getAuctionsByUserId(int id);*/
 }

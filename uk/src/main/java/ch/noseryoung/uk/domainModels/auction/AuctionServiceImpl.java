@@ -46,7 +46,7 @@ public class AuctionServiceImpl implements AuctionService{
         auctionRepository.deleteById(id);
     }
 
-    @Override
+   /* @Override
     public List<Auction> findAllByUserId(int id) {
         List<Auction> auctions = auctionRepository.findAll();
         List<Auction> auctionsByUserId = null;
@@ -56,5 +56,5 @@ public class AuctionServiceImpl implements AuctionService{
             }
         }
         return auctionsByUserId;
-    }
+    }*/
 }

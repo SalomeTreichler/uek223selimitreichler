@@ -26,8 +26,8 @@ public class Auction {
     @Column(name = "starting_price")
     private double startingPrice;
 
-    @OneToMany(mappedBy = "auction")
-    private List<Bid> bids;
+    /*@OneToMany(mappedBy = "auction")
+    private List<Bid> bids;*/
 
     @Column(name = "is_public")
     @Type(type = "org.hibernate.type.NumericBooleanType")
@@ -97,11 +97,11 @@ public class Auction {
         this.user = user;
     }
 
-    public Set<Bid> getBids() {
+/*    public List<Bid> getBids() {
         return bids;
     }
 
-    public void setBids(Set<Bid> bids) {
+    public void setBids(List<Bid> bids) {
         this.bids = bids;
-    }
+    }*/
 }

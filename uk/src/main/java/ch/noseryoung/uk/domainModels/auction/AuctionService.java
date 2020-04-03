@@ -13,5 +13,5 @@ public interface AuctionService {
 
     void deleteById(int id);
 
-    List<Auction> findAllByUserId(int id);
+    /*List<Auction> findAllByUserId(int id);*/
 }
