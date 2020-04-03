@@ -1,28 +1,16 @@
-package ch.noseryoung.uk.domainModels.bid;
+package ch.noseryoung.uk.domainModels.bid.dto;
 
 import ch.noseryoung.uk.domainModels.auction.Auction;
 import ch.noseryoung.uk.domainModels.user.User;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "bid")
-public class Bid {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class BidDTO {
     private int id;
-
-    @Column(name = "amount")
     private double amount;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="user_id")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name="auction_id")
     private Auction auction;
+
+    public BidDTO() {
+    }
 
     public int getId() {
         return id;
@@ -36,7 +24,7 @@ public class Bid {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
