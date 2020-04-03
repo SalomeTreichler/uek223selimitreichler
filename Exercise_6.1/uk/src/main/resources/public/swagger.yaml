@@ -1,0 +1,468 @@
+# This part provides basic information about the API and the creator
+swagger: '2.0'
+info:
+  description: 'Documentation for an API'
+  version: '1.0'
+  title: 'API documentation'
+  contact:
+    name: 'Jens Harutaka Scheidmann'
+    email: 'jens.scheidmann@gmail.com'
+host: 'localhost:8080'
+basePath: /
+
+ # Here we define all of the controllers in this API
+tags:
+  - name: 'AuthorityController'
+    description: 'Endpoints for CRUD-operations with the entity "Authority"'
+  - name: 'RoleController'
+    description: 'Endpoints for CRUD-operations with the entity "Role"'
+  - name: 'UserController'
+    description: 'Endpoints for CRUD-operations with the entity "User"'
+
+# Here we define the actual endpoints
+paths:
+
+  # AUTHORITY
+  # This part defines the URL to access the endpoint
+  /authorities:
+    # This part defines which http method it to be used for this endpoint
+    get:
+      # This part defines to which controller this endpoint belongs to
+      tags:
+        - AuthorityController
+      # A quick summary what this endpoint does
+      summary: 'Returns all authorities'
+      # What kind of payload to expect
+      produces:
+        - application/json
+      # The possible responses if accessed correctly
+      responses:
+        200:
+          description: OK
+          # The payload which you'll receive
+          schema:
+            type: array
+            items:
+              # A reference to an object we created below
+              $ref: '#/definitions/AuthorityDTO'
+        403:
+          description: Forbidden
+      # Is this endpoint deprecated?
+      deprecated: false
+    post:
+      tags:
+        - AuthorityController
+      summary: 'Creates a new authority'
+      # This part defines what data type needs to be sent
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      # The actual parameters
+      parameters:
+        # Where is this parameter?
+        - in: body
+          # The name of the entity
+          name: authority
+          # Is it required?
+          required: true
+          # A short description of the entity
+          description: "The new authority's data"
+          # The actual entity
+          schema:
+            # A reference to the entity
+            $ref: '#/definitions/AuthorityDTO'
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/AuthorityDTO'
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+      deprecated: false
+  /authorities/{id}:
+    get:
+      tags:
+        - AuthorityController
+      summary: 'Returns a single authority with the provided ID'
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuthorityDTO'
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - AuthorityController
+      summary: 'Updates the authority with the provided ID'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+        - in: body
+          name: authority
+          description: "The updated users data"
+          required: true
+          schema:
+            $ref: '#/definitions/AuthorityDTO'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/AuthorityDTO'
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - AuthorityController
+      summary: 'Deletes an authority with the provided ID'
+      produces:
+        - none
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+      responses:
+        204:
+          description: No Content
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+
+# All the following endpoints are built in the same way as the previous one
+# for questions check the endpoints above
+
+  # ROLE
+  /roles:
+    get:
+      tags:
+        - RoleController
+      summary: 'Returns all roles'
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RoleDTO'
+        403:
+          description: Forbidden
+      deprecated: false
+    post:
+      tags:
+        - RoleController
+      summary: 'Creates a new role'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: "The new roles data"
+          schema:
+            $ref: '#/definitions/RoleDTO'
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/RoleDTO'
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+      deprecated: false
+  /roles/{id}:
+    get:
+      tags:
+        - RoleController
+      summary: 'Returns a single role with the provided ID'
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleDTO'
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - RoleController
+      summary: 'Updates the role with the provided ID'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+        - in: body
+          name: role
+          description: "The updated roles data"
+          required: true
+          schema:
+            $ref: '#/definitions/RoleDTO'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleDTO'
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - RoleController
+      summary: 'Deletes a role with the provided ID'
+      produces:
+        - none
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+      responses:
+        204:
+          description: No Content
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+
+  # USER
+  /users:
+    get:
+      tags:
+        - UserController
+      summary: 'Returns all users'
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UserDTO'
+        403:
+          description: Forbidden
+      deprecated: false
+    post:
+      tags:
+        - UserController
+      summary: 'Creates a new user'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: "The new users data"
+          schema:
+            $ref: '#/definitions/UserDTO'
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/UserDTO'
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+      deprecated: false
+  /users/{id}:
+    get:
+      tags:
+        - UserController
+      summary: 'Returns a single user with the provided ID'
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserDTO'
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - UserController
+      summary: 'Updates the user with the provided ID'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+        - in: body
+          name: user
+          description: "The updated users data"
+          required: true
+          schema:
+            $ref: '#/definitions/UserDTO'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/UserDTO'
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - UserController
+      summary: 'Deletes a user with the provided ID'
+      produces:
+        - none
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the requested entity'
+          required: true
+          type: string
+      responses:
+        204:
+          description: No Content
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+      deprecated: false
+
+# All the DTOs
+definitions:
+  # AUTHORITY
+  # How the object is referred to
+  AuthorityDTO:
+    # What is data type this object?
+    type: object
+    # What parts of it are required?
+    required:
+      - name
+    # The effective properties of the object
+    properties:
+      id:
+        type: string
+        example: 'id'
+      name:
+        type: string
+        example: 'ADMIN'
+    # How the object is called
+    title: AuthorityDTO
+
+ # The DTOs from here on out are built in a similar way
+
+  # ROLE
+  RoleDTO:
+    type: object
+    required:
+      - name
+      - authorities
+    properties:
+      id:
+        type: string
+        example: 'id'
+      name:
+        type: string
+        example: 'Admin'
+      authorities:
+        type: array
+        items:
+          $ref: '#/definitions/AuthorityDTO'
+    title: RoleDTO
+
+  # USER
+  UserDTO:
+    type: object
+    required:
+      - email
+      - password
+      - enabled
+    properties:
+      id:
+        type: string
+        example: 'id'
+      email:
+        type: string
+        example: 'example@mail.com'
+      password:
+        type: string
+        example: 'youshouldNotPutAPasswordHere'
+      enabled:
+        type: boolean
+        example: true
+      roles:
+        type: array
+        items:
+          $ref: '#/definitions/RoleDTO'
+    title: UserDTO
