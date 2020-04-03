@@ -72,15 +72,11 @@ public class User {
     @Column(name = "credentials_expiration_date")
     private LocalDate credentialsExpirationDate;
 
-    // Simple column annotation without naming
-    @Column
-    // This annotation defines as what kind of data type this attribute should be persisted at in the database
+    @Column(name = "locked")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean locked;
 
-    // Simple column annotation without naming
-    @Column
-    // This annotation defines as what kind of data type this attribute should be persisted at in the database
+    @Column(name = "enabled")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean enabled;
 
@@ -152,22 +148,20 @@ public class User {
         return this;
     }
 
-    public Boolean getLocked() {
+    public Boolean isLocked() {
         return locked;
     }
 
-    public User setLocked(Boolean locked) {
+    public void setLocked(Boolean locked) {
         this.locked = locked;
-        return this;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
-    public User setEnabled(Boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-        return this;
     }
 
 }
