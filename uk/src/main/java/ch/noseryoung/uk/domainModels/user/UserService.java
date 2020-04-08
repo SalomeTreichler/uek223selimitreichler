@@ -16,6 +16,7 @@ public interface UserService {
 
     void deleteById(int id);
 
+    List<User> getUsersBySalary(double minSalary, double maxSalary);
 
     /*List<Auction> getAuctionsByUserId(int id);*/
 }

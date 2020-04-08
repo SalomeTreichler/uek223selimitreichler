@@ -35,6 +35,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "salary")
+    private double salary;
+
     // Example of a foreign key
     // This annotation defines the relationship between the two entities
     // The fetch type is also definable, default is eager
@@ -163,4 +166,11 @@ public class User {
         return this;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 }

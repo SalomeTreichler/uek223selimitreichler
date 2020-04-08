@@ -65,4 +65,9 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/sal/{min}/{max}")
+    public ResponseEntity<List<UserDTO>> getUserBySalary(@PathVariable double min, @PathVariable double max){
+        return new ResponseEntity<>(userMapper.toDTOs(userService.getUsersBySalary(min, max)), HttpStatus.OK);
+    }
+
 }

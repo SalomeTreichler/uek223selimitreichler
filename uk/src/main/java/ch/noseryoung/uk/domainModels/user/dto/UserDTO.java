@@ -21,6 +21,8 @@ public class UserDTO {
 
     private Boolean enabled;
 
+    private double salary;
+
     // Standard empty constructor
     public UserDTO() {}
 
@@ -79,4 +81,11 @@ public class UserDTO {
         return this;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 }

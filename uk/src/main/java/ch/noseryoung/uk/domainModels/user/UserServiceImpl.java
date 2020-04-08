@@ -58,6 +58,11 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public List<User> getUsersBySalary(double minSalary, double maxSalary) {
+        return userRepository.getBySalary(minSalary, maxSalary);
+    }
+
   /*  @Override
     public List<Auction> getAuctionsByUserId(int id) {
         return auctionService.findAllByUserId(id);
