@@ -35,7 +35,7 @@ public class SpringFoxConfig {
     // This method provides basic information for the automatically generated swagger documentation
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("API documentation").description("API documentation")
-                .termsOfServiceUrl("").contact(new Contact("Jens Harutaka Scheidmann", "Kontakt", "jens.scheidmann@gmail.com")).license("")
+                .termsOfServiceUrl("").contact(new Contact("Salome Claudine Treichler", "Kontakt", "salome.treichler@noseryoung.ch")).license("")
                 .licenseUrl("").version("1.0").build();
     }
 

@@ -1,8 +1,10 @@
 package ch.noseryoung.uk.domainModels.user;
 
 import ch.noseryoung.uk.domainModels.role.Role;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -19,11 +21,16 @@ public class User {
     // Regular attributes
     // The primary key, this annotation defines that this is a primary key:
     @Id
-    // This annotation makes sure that our id gets auto-incremented
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // This annotation makes sure that our id gets generated
+    @GeneratedValue(generator = "system-uuid")
+    // With this annotation we define the generator for our UUIDs
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    // And lastly this annotation ensures when it will get generated
+    @Generated(GenerationTime.ALWAYS)
     // This annotation simply defines that this attribute has it's own column and how that column is called
     @Column(name = "id")
-    private int id;
+    // UUIDs are strings
+    private String id;
 
     // In this example the name has not been defined, if you do this hibernate will plainly use the name of the variable itself
     // The nullable parameter defines if this attribute can be null in the database
@@ -84,11 +91,11 @@ public class User {
     public User() {}
 
     // Getters and setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public User setId(int id) {
+    public User setId(String id) {
         this.id = id;
         return this;
     }
@@ -97,9 +104,8 @@ public class User {
         return username;
     }
 
-    public User setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
-        return this;
     }
 
     public String getPassword() {
